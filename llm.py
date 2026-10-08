@@ -1,24 +1,13 @@
 import os
-
 from dotenv import load_dotenv
 from huggingface_hub import InferenceClient
 
-
-# Load .env file
 load_dotenv()
-
-
-# Get Hugging Face token
 HF_TOKEN = os.getenv("HF_TOKEN")
-
-
-# Create Hugging Face client
 client = InferenceClient(
     api_key=HF_TOKEN,
     provider="auto"
 )
-
-
 def analyze_sign(text):
 
     prompt = f"""
@@ -72,7 +61,6 @@ Give the Tamil translation in simple Tamil.
 OCR TEXT:
 {text}
 """
-
     response = client.chat.completions.create(
 
         model="openai/gpt-oss-120b",
